@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres-container-api
-        image: lazaredev/postgres-container-api:tag   # Replace with your API image and tag
+        image: lazaredev/postgres-container-api:tag  
         ports:
         - containerPort: 80
         env:

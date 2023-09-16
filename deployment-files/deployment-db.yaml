@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: postgres-container-db
-        image: lazaredev/postgres-container-db:tag   # Replace with your PostgreSQL image and tag
+        image: lazaredev/postgres-container-db:tag   
         ports:
         - containerPort: 5432
         env:

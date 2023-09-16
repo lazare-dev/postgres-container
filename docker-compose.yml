@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     build:
-      context: ./postgres  # Updated context to point to the postgres directory
+      context: ./postgres  
       dockerfile: Dockerfile.postgres
     restart: always
     environment:

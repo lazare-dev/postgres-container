@@ -1,28 +1,28 @@
 #!/bin/bash
 set -e
 
-# Start the PostgreSQL service
+# start postgres 
 service postgresql start
 
-# Check if the PostgreSQL user exists before creating it
+# check if user exist and create if not
 if psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname postgres -tAc "SELECT 1 FROM pg_roles WHERE rolname='$POSTGRES_USER'" | grep -q 1; then
     echo "User $POSTGRES_USER already exists."
 else
-    # Create a PostgreSQL user
+    # Create user
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname postgres <<-EOSQL
         CREATE USER $POSTGRES_USER WITH SUPERUSER PASSWORD '$POSTGRES_PASSWORD';
 EOSQL
 fi
 
-# Check if the PostgreSQL database exists before creating it
+# check if db exist and create if not
 if psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname postgres -tAc "SELECT 1 FROM pg_database WHERE datname='$POSTGRES_DB'" | grep -q 1; then
     echo "Database $POSTGRES_DB already exists."
 else
-    # Create a PostgreSQL database and set the owner
+    # create and set owner
     psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname postgres <<-EOSQL
         CREATE DATABASE $POSTGRES_DB;
         GRANT ALL PRIVILEGES ON DATABASE $POSTGRES_DB TO $POSTGRES_USER;
 EOSQL
 fi
 
-# No need to stop the PostgreSQL service here
+# stop here if needed
