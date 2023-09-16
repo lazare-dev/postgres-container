@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-container-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-container-api
+  template:
+    metadata:
+      labels:
+        app: postgres-container-api
+    spec:
+      containers:
+      - name: postgres-container-api
+        image: lazaredev/postgres-container-api:tag   # Replace with your API image and tag
+        ports:
+        - containerPort: 80
+        env:
+        - name: POSTGRES_HOST
+          value: db
+        - name: POSTGRES_PORT
+          value: "5432"
+        - name: POSTGRES_DB
+          value: testdb
+        - name: POSTGRES_USER
+          value: andrew
+        - name: POSTGRES_PASSWORD
+          value: PooPoo1987!

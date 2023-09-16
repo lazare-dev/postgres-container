@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-container-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-container-db
+  template:
+    metadata:
+      labels:
+        app: postgres-container-db
+    spec:
+      containers:
+      - name: postgres-container-db
+        image: lazaredev/postgres-container-db:tag   # Replace with your PostgreSQL image and tag
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          value: andrew
+        - name: POSTGRES_PASSWORD
+          value: PooPoo1987!
+        - name: POSTGRES_DB
+          value: testdb
