@@ -1,39 +1,51 @@
-# postgres-container
+# PostgreSQL Container
 
-This repository contains a Dockerfile and a docker-compose.yml file to create a PostgreSQL database running as a container.
+This repository provides a Docker-based setup for running a PostgreSQL database as a container.
 
 ## Prerequisites
 
+Before you begin, ensure that you have the following installed on your system:
+
 - Docker
 
-## Usage
+## Getting Started
+
+Follow these steps to set up and run the PostgreSQL container:
 
 1. Clone this repository to your local machine using the following command:
-```
-git clone <repository-url>
-```
 
-2. Navigate to the cloned repository.
+   ```shell
+   git clone <repository-url>
+   ```
+Navigate to the cloned repository:
 
-3. Run the following command to build the container:
-```
-docker build -t <image-name>
-```
+   ```shell
+   cd postgres-container
+   ```
 
-4. Run the following command to start the container:
-```
-docker run -d -p 5432:5432 --name <container-name> <image-name>
-```
-5. You can now connect to your PostgreSQL database using any PostgreSQL client by specifying `localhost` as the host and `5432` as the port.
+Build the container image:
 
-## Configuration
+   ```shell
+   docker build -t <image-name> ./postgres
+   ```
 
-The following environment variables can be set in the `docker-compose.yml` file:
+Replace <image-name> with your desired image name.
 
-- `POSTGRES_USER`: The username for the PostgreSQL user (default: `docker`).
-- `POSTGRES_PASSWORD`: The password for the PostgreSQL user (default: `docker`).
-- `POSTGRES_DB`: The name of the PostgreSQL database (default: `docker`).
+Start the PostgreSQL container:
 
-## License
+   ```shell
+   docker run -d -p 5432:5432 --name <container-name> <image-name>
+   ```
+Replace <container-name> with your preferred container name.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+You can now connect to your PostgreSQL database using any PostgreSQL client by specifying localhost as the host and 5432 as the port.
+
+Configuration
+You can customize the PostgreSQL container's configuration by modifying the docker-compose.yml file. The following environment variables can be set:
+
+POSTGRES_USER: The username for the PostgreSQL user (default: docker).
+POSTGRES_PASSWORD: The password for the PostgreSQL user (default: docker).
+POSTGRES_DB: The name of the PostgreSQL database (default: docker).
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
